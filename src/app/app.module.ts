@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AtencionComponent } from './atencion/atencion.component';
 import { NumeroComponent } from './numero/numero.component';
+
 @NgModule({
   declarations: [
     AppComponent,

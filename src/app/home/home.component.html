@@ -31,9 +31,9 @@
             <div class="form-group">
                 <label>Tipo de servicio</label>
                     <select class="form-control col-sm-4">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                        <option *ngFor="let ser of lstServicios" [value]="ser.id_servicio">
+                            {{ser.descripcion}}
+                        </option>
                     </select>
             </div>
             <div class="form-group">
