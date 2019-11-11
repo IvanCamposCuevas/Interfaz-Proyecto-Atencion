@@ -1,1 +1,52 @@
-<p>header works!</p>
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">
+        Para una mejor atención, por favor ingrese sus datos:
+      </h1>
+    </div>
+    <div class="card-body">
+        <div class="row">
+          <div class="col-xl-6">
+              <div class="form-group">
+                  <label class="col-form-label control-label col-sm-2" for="nombre">Nombre</label>
+                  <input required name="nombre" id="nombre" [(ngModel)]="atencion.Nombre" class="form-control" #nombre=ngModel [class.is-invalid]="nombre.invalid && nombre.touched"
+                  [class.is-valid]="nombre.valid">
+              </div>
+              <div class="form-group">
+                  <label class="col-form-label control-label col-sm-2" for="rut">Rut</label>
+                  <input required name="rut" [(ngModel)]="atencion.Rut" id="rut" #rut=ngModel class="form-control"[class.is-invalid]="rut.invalid && rut.touched"
+                  [class.is-valid]="rut.valid">
+              </div>
+          </div>
+          <div id="radiosAtencion" class="col-xl-4">
+              <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" name="rdCLiente" [(ngModel)]="atencion.EsCliente" #esCliente=ngModel id="radioGrupo1" value="1" [class.is-invalid]="esCliente.invalid && esCliente.touched">
+                  <label class="custom-control-label" for="radioGrupo1">Es Cliente</label>
+              </div>
+              <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" name="rdCLiente" [(ngModel)]="atencion.EsCliente" #esCliente=ngModel id="radioGrupo2" value="0" [class.is-invalid]="esCliente.invalid && esCliente.touched">
+                  <label class="custom-control-label" for="radioGrupo2"> No es Cliente</label>
+              </div>
+              <span class="invalid-feedback" *ngIf="esCliente.invalid && esCliente.touched">
+                      Tipo cliente requerido
+              </span>
+          </div>
+        </div>
+        <div class="form-group">
+            <label>Tipo de servicio</label>
+            <select [(ngModel)]="atencion.TipoServicio" name="TipoServicio" #tipoServicio="ngModel" class="form-control col-sm-4">
+                <option #tipoServicio *ngFor="let ser of lstServicios" [value]="ser.id_servicio">
+                    {{ser.descripcion}}
+                    <input type="hidden" id="custId" name="custId" [value]="ser.solicitar_comentario">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label>Comentario</label>
+          <textarea class="form-control col-sm-6" name="txaComentario" rows="3" [(ngModel)]="atencion.Comentario" #comentario="ngModel"></textarea>
+        </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </div>
