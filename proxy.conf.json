@@ -1,6 +1,6 @@
 {
     "/api/*":{
-        "target": "http://localhost:53976",
+        "target": "http://webapi.local/",
         "secure": false,
         "changeOrigin": true
     }

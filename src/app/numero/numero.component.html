@@ -3,24 +3,24 @@
     <button type="submit" class="btn btn-primary">Buscar</button>
 </form>
 <br>
-    <div class="table-responsive">
-            <table class="table table-bordered table-striped" *ngIf="listNumeros!=null">
-                <thead>
-                    <tr>
-                        <th scope="col">Rut</th>
-                        <th scope="col">Servicio</th>
-                        <th scope="col">Numero</th>
-                        <th scope="col">Accion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let num of listNumeros">
-                        <td scope="row">{{num.Rut}}</td>
-                        <td>{{num.Servicio}}</td>
-                        <td>{{num.NumAtencion}}</td>
-                        <td><button type="button" class="btn btn-danger" (click)="eliminarAtencionPorNumero(num)">Eliminar</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped" *ngIf="listNumeros!=null">
+        <thead>
+            <tr>
+                <th scope="col">Rut</th>
+                <th scope="col">Servicio</th>
+                <th scope="col">Numero</th>
+                <th scope="col">Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let num of listNumeros">
+                <td scope="row">{{num.Rut}}</td>
+                <td>{{num.Servicio}}</td>
+                <td>{{num.NumAtencion}}</td>
+                <td><button type="button" class="btn btn-danger" (click)="eliminarAtencionPorNumero(num)">Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 

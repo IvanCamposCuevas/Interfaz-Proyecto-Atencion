@@ -49,7 +49,6 @@
                                 <input #valorComentario type="hidden" id="ValorComentario" name="ValorComentario" [value]="ser.solicitar_comentario">
                             </option>
                         </select>
-                        Valor Comentario: {{ tipoServicio.value }}
                         <span class="invalid-feedback" *ngIf="tipoServicio.invalid && tipoServicio.errors?.defaultSelected">
                                 Tipo cliente no valido
                         </span>

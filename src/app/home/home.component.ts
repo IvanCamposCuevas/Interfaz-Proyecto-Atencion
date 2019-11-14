@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   private esHiddenTxtBox:boolean = true;
   private esRequiredTxtBox:boolean = false;
 
+  public formularioEnviado:boolean = false;
+  
   atencion: Atencion = {
     Nombre: null,
     Rut: null,
@@ -39,22 +41,26 @@ export class HomeComponent implements OnInit {
   }
 
   saveAtencion() : void{
-    var stringSplit = this.atencion.TipoServicio.toString().split("|",2);
+    const stringSplit = this.atencion.TipoServicio.toString().split("|",2);
     if(this.atencion.Comentario == "" || this.atencion.Comentario == null && stringSplit[1] == "1"){
       alert("Ingrese un comentario");
     }else{
-      this.atencion.TipoServicio = <number><unknown>stringSplit[0];
-      this.rest.postAtencion('/api/atencion', this.atencion).subscribe(
-      (response: any) => {
-        this.router.navigate(['/AtencionCliente'], {state: {data: response}});
-      },
-        (error: any) => console.error(error)
-      );
+      if(confirm("¿Esta seguro que desea enviar la informacion?")){
+        this.atencion.TipoServicio = <number><unknown>stringSplit[0];
+        this.rest.postAtencion('/api/atencion', this.atencion).subscribe(
+        (response: any) => {
+          this.formularioEnviado = true;
+          this.router.navigate(['/AtencionCliente'], {state: {data: response}});
+        },
+          (error: any) => console.error(error)
+        );
+        this.formularioEnviado = false;
+      }
     }
   }
    solicitarComentario(event){
-    var string = event.target.value;
-    var stringSplit = string.split("|",2);
+    const string = event.target.value;
+    const stringSplit = string.split("|",2);
     if(stringSplit[1]==="1"){//stringSplit[1] == valor de comentario
       this.VistaComentario.nativeElement.hidden = !this.esHiddenTxtBox;
       this.Comentario.nativeElement.required = !this.esRequiredTxtBox;

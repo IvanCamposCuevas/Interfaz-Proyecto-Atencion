@@ -11,7 +11,11 @@ export class RestClientService {
   constructor(private http: HttpClient) { }
 
   getJson(url: string){
-    return this.http.get(url).pipe(catchError(this.handleError));
+    return this.http.get(url, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(catchError(this.handleError));
   }
 
   postAtencion(url: string, _atencion:Atencion){

@@ -22,11 +22,16 @@ export class NumeroComponent {
      (error: any) => console.error(error)
     );
   }
-  eliminarAtencionPorNumero(numeroAtencion:Numero){
-    this.server.deleteAtencion('/api/numero', numeroAtencion.NumAtencion).subscribe((response: any) =>{
-      console.log(response);
-     },
-     (error: any) => console.error(error)
-     );
+  eliminarAtencionPorNumero(infoNumero:Numero){
+    if(confirm('¿Estas seguro que quiere eliminar el numero seleccionado?')){
+      this.server.deleteAtencion('/api/numero', infoNumero.NumAtencion).subscribe((response: any) =>{
+        const i = this.listNumeros.findIndex(x => x.NumAtencion === infoNumero.NumAtencion);
+        if(i !== -1){
+          this.listNumeros.splice(i,1);
+        }
+       },
+       (error: any) => console.error(error)
+       );
+    }
   }
 }
